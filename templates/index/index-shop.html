@@ -1,0 +1,36 @@
+{% extends "index/base.html" %}
+{% load static %}
+{% block main %}
+
+<body>
+
+{% include "index/navigator.html" %}
+
+<a class="scroll-top-arrow" href="javascript:void(0);"><i class="fa fa-angle-up"></i></a>
+<!--START LOADER-->
+<div class="loader1">
+    <div class="loader-inner">
+        <div id="preloader">
+            <div id="loader"></div>
+        </div>
+    </div>
+</div>
+<!--END LOADER-->
+
+
+{% include "index/header-top.html" %}
+
+{% include "index/slider.html" %}
+
+{% include "index/recommend-items.html" %}
+
+{% include "index/laters-arrival.html" %}
+
+{% include "index/banner.html" %}
+
+{% include "index/footer.html" %} 
+
+{% include "index/JavaScript.html"  %}
+
+</body>
+{% endblock main %}

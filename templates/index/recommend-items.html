@@ -1,0 +1,58 @@
+{% load static %}
+<!-- START PORTOLIO SECTION -->
+<div class="portfolio-section">
+    <div class="container">
+        <div class="row">
+
+            <!-- START PORTFOLIO HEADING -->
+            <div class="col-12">
+                <div class="portfolioHeading text-center">
+                    <h1 class="high-lighted-heading">Our Luxurious Product</h1>
+                    <p>Aenean imperdiet. Etiam ultricies nisi vel augue men tuhi spectrum alle me.</p>
+                </div>
+            </div>
+            <!-- END PORTFOLIO HEADING -->
+
+                <!-- START FILTERS -->
+            <div class="col-12">
+                <div class="clearfix d-flex justify-content-center">
+                    <div id="js-filters-blog-posts" class="cbp-l-filters-button cbp-1-filters-alignCenter">
+                        <div data-filter="*" class="cbp-filter-item-active cbp-filter-item cbp-l-filters-list-first">All </div>
+                        <div data-filter=".CausalShirts" class="cbp-filter-item">Causal Shirts </div>
+                        <div data-filter=".formalShirts" class="cbp-filter-item">Formal Shirts </div>
+                        <div data-filter=".others" class="cbp-filter-item cbp-l-filters-list-last">Others </div>
+                    </div>
+                </div>
+            </div>
+                <!-- END FILTERS -->
+
+                <!-- START PORTFOLIO IMAGES -->
+            <div class="col-12">
+                <div id="js-grid-blog-posts" class="cbp">
+                {% for product in products %}
+                    <div class="cbp-item CausalShirts others wow slideInUp">
+                        <a class="portfolio-circle-cart" href="shop/shop-cart.html">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                        <div class="image-holder">
+                            <a href="{% url 'detail-view' slug=product.slug %}"><img src="{% get_media_prefix %}{{product.image}}" class="card-img-top" alt="Lastest Arrivals 1"></a>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <a href="{% url 'detail-view' slug=product.slug %}" target="_blank" class="cbp-l-grid-blog-title portfolio-title">{{product.name}}</a>
+                            </div>
+                            <div class="col-12 text-center">
+                                <div class="cbp-l-grid-blog-desc portfolio-des">{{product.price}}</div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor  %}
+
+                </div>
+            </div>
+                <!-- END PORTFOLIO IMAGES -->
+
+        </div>
+    </div>
+</div>
+<!-- END PORTOLIO SECTION -->

@@ -1,0 +1,130 @@
+{% load static %}
+<!-- START HEADER NAVIGATION -->
+<div class="header-area">
+    <div class="container">
+        <div class="row upper-nav">
+
+            <div class="col-3 nav-icon pt-3">
+                <ul class="social-icons-simple text-left">
+                    <li><a href="javascript:void(0)" class="facebook-bg-hvr"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                    <li><a href="javascript:void(0)" class="twitter-bg-hvr"><i class="fab fa-twitter" aria-hidden="true"></i></a> </li>
+                    <li><a href="javascript:void(0)" class="instagram-bg-hvr"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-6 text-center nav-logo pt-3">
+                <a href="index-shop.html" class="navbar-brand"><img src="{% static 'shop/img/logo.jpg' %}" alt="img"></a>
+            </div>
+
+            <div class="col-3 nav-utility text-right d-flex justify-content-end align-items-center pt-3">
+                <div class="manage-icons d-inline-block">
+                        <ul>
+                            <li class="d-inline-block">
+                                <a id="add_search_box">
+                                    <i class="fas fa-search search-sidebar-hover"></i>
+                                </a>
+                            </li>
+                            <li class="d-inline-block mini-menu-card" id="mini-menu-card">
+                                <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages4">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                                <div id="sideNavPages4" class="collapse sideNavPages shopping-cart">
+                                    <i class="fas fa-caret-up mini-cart-caret"></i>
+                                    <div class="mini-cart-header text-left">
+                                        <h4>Shopping Cart</h4>
+                                    </div>
+                                    <div class="mini-cart-body">
+                                        <div class="inner-card">
+                                            <div class="media">
+                                                <div class="img-holder ml-1 mr-2">
+                                                    <a href="#"><img src="{% static 'shop/img/product-listing/p42.1.jpg' %}" class="align-self-center" alt="cartitem"></a>
+                                                </div>
+                                                <div class="media-body mt-auto mb-auto">
+                                                    <h5 class="name"><a href="#">light wear</a></h5>
+                                                    <p class="category">light wear Lastest</p>
+                                                    <p class="price"><span>$20</span>(x1) <a href="#"> <i class="fa fa-trash dustbin"></i></a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mini-cart-footer">
+                                        <div class="subtotal text-center">
+                                            <span class="total-title">Total: </span>
+                                            <span class="total-price">
+                                          <span class="Price-amount">
+                                          $135
+                                          </span>
+                                          </span>
+                                        </div>
+                                        <div class="actions text-center">
+                                            <a href="shop/shop-cart.html" class="btn pink-gradient-btn-into-black">View Bag</a>
+                                            <a href="shop/shop-cart.html" class="btn pink-gradient-btn-into-transparent">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-inline-block simple-dropdown" id="mini-menu">
+                                <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages5">
+                                    <i class="fas fa-th"></i>
+                                </a>
+
+                                <div id="sideNavPages5" class="collapse sideNavPages user-utiliity">
+                                    <i class="fas fa-caret-up user-utiliity-caret"></i>
+                                    <h6 class="user-utiliity-title">MY ACCOUNT </h6>
+                                    <hr>
+                                    <ul class="text-left">
+                                        <li>
+                                            <a href="shop/register.html">Register</a>
+                                        </li>
+                                        <li>
+                                            <a href="shop/login.html">Login</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </li>
+                        </ul>
+                 </div>
+            </div>
+            <div class="col-12 nav-mega">
+                <header class="site-header" id="header">
+                    <nav class="navbar navbar-expand-md  static-nav">
+                        <div class="container position-relative megamenu-custom">
+                            <a class="navbar-brand center-brand" href="index.html">
+                                <img src="{% static 'shop/img/logo.jpg' %}" alt="logo" class="logo-scrolled">
+                            </a>
+                            <div class="collapse navbar-collapse">
+                                <ul class="navbar-nav ml-auto mr-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'home-view' %}">HOME</a>
+                                    </li>
+                    
+                                    {% for category in categories %}
+                                    <li class="nav-item dropdown position-relative">
+                                        <a class="nav-link dropdown-toggle" href="{% url 'category-products' category_slug=category.slug  %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{category.title}}</a>
+                                        <div class="dropdown-menu">
+                                            {% for sub_cat in sub_cats %}
+                                                {% if sub_cat.category == category %}
+                                                    <ul>
+                                                        <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="{% url 'subcategory-products' category_slug=category.slug  sub_cat_slug=sub_cat.slug %}">{{sub_cat.name}}</a></li>
+                                                    </ul>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="shop/contact.html">CONTACT</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    
+                    </nav>
+                </header>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END HEADER NAVIGATION -->

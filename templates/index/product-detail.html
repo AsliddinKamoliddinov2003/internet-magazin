@@ -1,0 +1,107 @@
+{% extends 'index/base.html' %}
+
+{% load static %}
+
+{% block main %}
+
+{% include "index/navigator.html" %}
+<br>
+<br>
+<div class="pro-detail-sec row">
+    <div class="col-12">
+        <h4 class="pro-heading text-lg-left ">{{product.sub_category}}</h4>
+    </div>
+</div>
+<br>
+<div class="row product-list product-detail">
+    <div class="col-12 col-lg-6 product-detail-slider">
+        <div class="wrapper">
+            <div class="Gallery swiper-container img-magnifier-container" id="gallery">
+                <div class="swiper-wrapper myimgs">
+                    <div class="swiper-slide"> <a href="{% get_media_prefix %}{{product.image}}" data-fancybox="1"
+                            title="Zoom In"><img class="myimage" src="{% get_media_prefix %}{{product.image}}"
+                                alt="gallery" /></a></div>
+                </div>
+            </div>
+            <div class="Thumbs swiper-container" id="thumbs">
+                <div class="swiper-wrapper">
+                    {% for product_image in product.product_images.all %}
+                    <div class="swiper-slide"> <a href="{% get_media_prefix %}{{product_image.image}}" data-fancybox="1"
+                            title="Zoom In"> <img src="{% get_media_prefix %}{{product_image.image}}"
+                                alt="thumnails" /></a></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </aside>
+    <main class="col-md-6">
+        <article class="product-info-aside">
+
+            <h2 class="title mt-3"></h2>
+
+            <div class="mb-3">
+                <var class="price h4">{{product.name}} </var>
+            </div> <!-- price-detail-wrap .// -->
+
+            <p>{{product.body}}</p>
+
+
+            <input type="hidden" name="product_id" value="">
+            <dl class="row">
+                <dt class="col-sm-3">price</dt>
+                <dd class="col-sm-9">{{product.price}} so'm</dd>
+
+                <input type="hidden" name="product_id" value="{{product.id}}">
+                <dl class="row">
+                    <dt class="col-sm-3">Availabilty</dt>
+                    {% if product.availabilty == True %}
+                        <dd class="col-sm-9">in Stock</dd>
+                    {% else  %}
+                        <dd class="col-sm-9">out of Stock</dd>
+                    {% endif %}  
+                    <dt class="col-sm-3">Size</dt>
+                    <dd class="col-sm-9">
+                        <select name="size" id="id_size">
+                            <option value="-1" selected>Choose size</option>
+                            {% for size in product.product_size.all %}
+                            <option value="{{size.id}}">{{size.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </dd>
+
+
+                    <dt class="col-sm-3">Colors</dt>
+                    <dd class="col-sm-9">
+                        <select name="color" id="id_color">
+                            <option value="-1">Choose color</option>
+                            {% for color in product.product_colors.all %}
+                            <option value="{{color.id}}">{{color.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </dd>
+                </dl>
+
+
+                <div class="form-row  mt-4">
+                    <div class="form-group col-md">
+                        <button type="submit" class="btn  btn-primary" id="add_to_cart">
+                            <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span>
+                        </button>
+                        <a href="#" class="btn btn-light">
+                            <i class="fas fa-envelope" style="color: chocolate;"></i> <span class="text" style="color: chocolate;">Contact supplier</span>
+                        </a>
+                    </div> <!-- col.// -->
+                </div> <!-- row.// -->
+
+        </article> <!-- product-info-aside .// -->
+    </main> <!-- col.// -->
+</div> <!-- row.// -->
+
+{% include "index/laters-arrival.html" %}
+
+{% include "index/footer.html" %}
+
+{% include "index/javaScript.html" %}
+
+{% endblock main %}
