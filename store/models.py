@@ -50,6 +50,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
     
 class Product_image(models.Model):
     image = models.ImageField(upload_to="images/", null=True)

@@ -85,9 +85,9 @@
 
                 <div class="form-row  mt-4">
                     <div class="form-group col-md">
-                        <button type="submit" class="btn  btn-primary" id="add_to_cart">
+                        <a href="{% url 'add-cart-item' product_id=product.id %}" class="btn  btn-primary" id="add_to_cart">
                             <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span>
-                        </button>
+                        </a>
                         <a href="#" class="btn btn-light">
                             <i class="fas fa-envelope" style="color: chocolate;"></i> <span class="text" style="color: chocolate;">Contact supplier</span>
                         </a>
