@@ -3,162 +3,178 @@
 {% load static %}
 
 {% block main %}
+
 <body>
 
-<a class="scroll-top-arrow" href="javascript:void(0);"><i class="fa fa-angle-up"></i></a>
+    <a class="scroll-top-arrow" href="javascript:void(0);"><i class="fa fa-angle-up"></i></a>
 
-<!--START LOADER-->
-<div class="loader1">
-    <div class="loader-inner">
-        <div id="preloader">
-            <div id="loader"></div>
+    <!--START LOADER-->
+    <div class="loader1">
+        <div class="loader-inner">
+            <div id="preloader">
+                <div id="loader"></div>
+            </div>
         </div>
     </div>
-</div>
-<!--END LOADER-->
+    <!--END LOADER-->
 
-{% include "index/navigator.html" %}
+    {% include "index/navigator.html" %}
 
-<!--Product Line Up Start -->
-<div class="product-listing">
-    <div class="container">
-        <div class="row no-gutters">
+    <!--Product Line Up Start -->
+    <div class="product-listing">
+        <div class="container">
+            <div class="row no-gutters">
 
-            <!-- START STICKY NAV -->
-            <div class="col-12 col-lg-4 order-2 order-lg-1 sticky">
-                <div id="product-filter-nav" class="product-filter-nav mb-3">
-                    <div class="product-category">
-                        <h5 class="filter-heading  text-center text-lg-left">Categories</h5>
-                        {% for category in categories  %}
-                        <ul>
-                            <li><a href="{% url 'category-products' category_slug=category.slug %}">{{category.title}}</a></li>
-                        </ul>
-                        {% endfor %}
-                    </div>
-                    <div class="filter-content collapse show" id="collapse_3">
-                        <form action="" method="GET">
-                            <div class="inner">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Min</label>
-                                        <input class="form-control" name="min" placeholder="0" id="min-price" type="number" value="" >
-                                    </div>
-                                    <div class="form-group text-right col-md-6">
-                                        <label>Max</label>
-                                        <input class="form-control" name="max"  placeholder="  " id="max-price" type="number" value="">
-                                    </div>
-                                </div> <!-- form-row.// -->
-                                <span class="text text-danger" id="warning-text" style="display: none;">Qiymatlar oralig'i xato</span>
-                                <button class="btn btn-block btn-primary"> Filter qilish </button>
-                            </div> <!-- inner.// -->
-                        </form>
-                    </div>
-                    <article class="filter-group">
-                        <h6 class="title">
-                            <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_5"> Holati </a>
-                        </h6>
-                        <div class="filter-content collapse show" id="collapse_5">
-                            <div class="inner">
-                                <label class="custom-control custom-radio">
-                                  <input type="radio" name="myfilter_radio" checked="" class="custom-control-input">
-                                  <div class="custom-control-label"> har qanday </div>
-                                </label>
-                
-                                <label class="custom-control custom-radio">
-                                  <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                  <div class="custom-control-label"> yangi </div>
-                                </label>
-                
-                                <label class="custom-control custom-radio">
-                                  <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                  <div class="custom-control-label"> ishlatilgan </div>
-                                </label>
-                
-                                <label class="custom-control custom-radio">
-                                  <input type="radio" name="myfilter_radio" class="custom-control-input">
-                                  <div class="custom-control-label"> bepul </div>
-                                </label>
-                            </div> <!-- inner.// -->
+                <!-- START STICKY NAV -->
+                <div class="col-12 col-lg-4 order-2 order-lg-1 sticky">
+                    <div id="product-filter-nav" class="product-filter-nav mb-3">
+                        <div class="product-category">
+                            <h5 class="filter-heading  text-center text-lg-left">Categories</h5>
+                            {% for category in categories %}
+                            <ul>
+                                <li><a
+                                        href="{% url 'category-products' category_slug=category.slug %}">{{category.title}}</a>
+                                </li>
+                            </ul>
+                            {% endfor %}
                         </div>
-                    </article> <!-- filter-group .// -->
+                        <div class="filter-content collapse show" id="collapse_3">
+                            <form action="" method="GET">
+                                <div class="inner">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Min</label>
+                                            <input class="form-control" name="min" placeholder="{{small_price.price}}" id="min-price"
+                                                type="number" value="{{request.GET.min}}">
+                                        </div>
+                                        <div class="form-group text-right col-md-6">
+                                            <label>Max</label>
+                                            <input class="form-control" name="max" placeholder="{{biggest_price.price}}" id="max-price"
+                                                type="number" value="{{request.GET.max}}">
+                                        </div>
+                                    </div> <!-- form-row.// -->
+                                    <span class="text text-danger" id="warning-text" style="display: none;">Qiymatlar
+                                        oralig'i xato</span>
+                                    <button type="submit" class="btn btn-block btn-primary"> Filter qilish </button>
+                                </div> <!-- inner.// -->
+                            </form>
+                        </div>
+                        <article class="filter-group">
+                            <h6 class="title">
+                                <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_5">
+                                    Holati </a>
+                            </h6>
+                            <div class="filter-content collapse show" id="collapse_5">
+                                <div class="inner">
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="myfilter_radio" checked=""
+                                            class="custom-control-input">
+                                        <div class="custom-control-label"> har qanday </div>
+                                    </label>
+
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                        <div class="custom-control-label"> yangi </div>
+                                    </label>
+
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                        <div class="custom-control-label"> ishlatilgan </div>
+                                    </label>
+
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                        <div class="custom-control-label"> bepul </div>
+                                    </label>
+                                </div> <!-- inner.// -->
+                            </div>
+                        </article> <!-- filter-group .// -->
 
 
-                </div>
-            </div>
-            <!-- END STICKY NAV -->
-
-            <!-- START PRODUCT COL 8 -->
-            <div class="col-md-12 col-lg-8 order-1 order-lg-2">
-                <div class="row">
-
-                    <!-- START LISTING HEADING -->
-                    <div class="col-12 product-listing-heading">
-                        <h1 class="heading text-left">{{product.sub_category.name}}</h1>
-                        <p class="para_text text-left">{{products.count}} ta mahsulot topildi</p>
                     </div>
-                    <!-- END LISTING HEADING -->
+                </div>
+                <!-- END STICKY NAV -->
+
+                <!-- START PRODUCT COL 8 -->
+                <div class="col-md-12 col-lg-8 order-1 order-lg-2">
+                    <div class="row">
+
+                        <!-- START LISTING HEADING -->
+                        <div class="col-12 product-listing-heading">
+                            <h1 class="heading text-left">{{product.sub_category.name}}</h1>
+                            <p class="para_text text-left">{{products.count}} ta mahsulot topildi</p>
+                        </div>
+                        <!-- END LISTING HEADING -->
 
 
 
-                    <!-- START PRODUCT LISTING SECTION -->
-                    <div class="col-12 product-listing-products">
+                        <!-- START PRODUCT LISTING SECTION -->
+                        <div class="col-12 product-listing-products">
 
-                        <!-- START DISPLAY PRODUCT -->
-                        <div class="product-list row">
-                            {% if  products.count > 0 %}
+                            <!-- START DISPLAY PRODUCT -->
+                            <div class="product-list row">
+                                {% if products.count > 0 %}
                                 {% for product in products %}
-                                    <div class="col-12 col-md-6 col-lg-4 manage-color-hover wow slideInUp" data-wow-delay=".2s">
-                                        <div class="product-item owl-theme product-listing-carousel owl-carousel">
-                                            <div class="item p-item-img">
-                                                    <img src="{% get_media_prefix %}{{product.image}}" alt="images">
-                                                <div class="text-center d-flex justify-content-center align-items-center">
-                                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 manage-color-hover wow slideInUp"
+                                    data-wow-delay=".2s">
+                                    {% if product.is_new_product %}
+                                        <span class="badge badge-danger"> NEW </span>
+                                    {% endif %}
+                                    <div class="product-item owl-theme product-listing-carousel owl-carousel">
+                                        <div class="item p-item-img">
+                                            <a href="{% url 'detail-view' slug=product.slug %}"><img src="{% get_media_prefix %}{{product.image}}" alt="images"></a>
+                                            <div class="text-center d-flex justify-content-center align-items-center">
                                             </div>
                                         </div>
-                                        <br>
-                                        <div class="p-item-detail">
-                                            <h4 class="text-center p-item-name"><a href="{% url 'detail-view' slug=product.slug %}"> {{product.name}} </a></h4>
-                                            <p class="text-center p-item-price">{{product.price}}</p>
-                                        </div>
                                     </div>
+                                    <br>
+                                    <div class="p-item-detail">
+                                        <h4 class="text-center p-item-name"><a
+                                                href="{% url 'detail-view' slug=product.slug %}"> {{product.name}} </a>
+                                        </h4>
+                                        <p class="text-center p-item-price">{{product.price}} so'm </p>
+                                    </div>
+                                </div>
                                 {% endfor %}
-                            {% else %}
+                                {% else %}
                                 <section class="section-content bg padding-y">
                                     <div class="container">
-                                    
-                                    <header class="section-heading">
-                                        <h2 class="section-title">Siz qidirgan ma'lumot topilmadi!</h2>
-                                    </header><!-- sect-heading -->
-                                    
-                                    <article>
-                                        <p><a href="{% url 'home-view' %}" style="color: brown;"><h6>bosh sahifa</h6></a> ga o'tib mahsulotni qidirishda davom eting !!!</p>
-                                    
-                                    
-                                    </article>
-                                    
+
+                                        <header class="section-heading">
+                                            <h2 class="section-title">Siz qidirgan ma'lumot topilmadi!</h2>
+                                        </header><!-- sect-heading -->
+
+                                        <article>
+                                            <p><a href="{% url 'home-view' %}" style="color: brown;">
+                                                    <h6>bosh sahifa</h6>
+                                                </a> ga o'tib mahsulotni qidirishda davom eting !!!</p>
+
+
+                                        </article>
+
                                     </div> <!-- container .//  -->
                                 </section>
-                            {% endif %}
+                                {% endif %}
+                            </div>
+                            <!-- END DISPLAY PRODUCT -->
+
+
                         </div>
-                        <!-- END DISPLAY PRODUCT -->
-
-
+                        <!-- END PRODUCT LISTING SECTION -->
                     </div>
-                    <!-- END PRODUCT LISTING SECTION -->
                 </div>
-            </div>
-            <!-- END PRODUCT COL 8 -->
+                <!-- END PRODUCT COL 8 -->
 
+            </div>
         </div>
     </div>
-</div>
-<!--Product Line Up End-->
+    <!--Product Line Up End-->
 
-{% include "index/footer.html" %}
+    {% include "index/footer.html" %}
 
-{% include "index/header-top.html" %}
+    {% include "index/header-top.html" %}
 
-{% include "index/javaScript.html" %}
+    {% include "index/javaScript.html" %}
 
 </body>
 {% endblock main %}

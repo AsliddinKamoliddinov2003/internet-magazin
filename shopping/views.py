@@ -69,5 +69,13 @@ def remove_cart_item(request, product_id):
     return redirect(reverse("cart"))
 
 
+def standalone(request):
+    cartitems = CartItem.objects.all()
+    context = {
+        "cartitems":cartitems
+    }
+    return render(request, "cart/standalone.html", context)
+
+
     
 

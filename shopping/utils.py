@@ -15,3 +15,15 @@ def get_cart(request):
 
 
     return cart 
+
+
+def get_cartitems_count(request):
+    cart = get_cart(request)
+    
+    amount=0
+    if cart:
+        cartitems = CartItem.objects.filter(cart=cart)
+        for cartitem in cartitems:
+            amount += cartitem.quantity
+
+    return  amount

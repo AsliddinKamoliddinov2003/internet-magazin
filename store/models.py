@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime, timezone
 
 
 class Category(models.Model):
@@ -38,6 +39,12 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     body = models.TextField()
     price = models.FloatField(default=5000)
+    CONDITION = {
+        ("1", "yangi"),
+        ("2", "ishlatilgan"),
+        ("3", "bepul")
+    }
+    condition = models.CharField(choices=CONDITION, max_length=10, default="1")
     image = models.ImageField(upload_to="images/", null=True)
     slug = models.CharField(max_length=255, null=True)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True)
@@ -49,6 +56,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    
+    def is_new_product(self):
+        time_delta = datetime.now(timezone.utc) - self.created_at
+        return time_delta.seconds < 86400
 
 
     

@@ -11,9 +11,8 @@
                 <div class="lastest_featured_products owl-carousel owl-theme">
                     {% for product in products %}
                         <div class="lastest_arrival_items item">
-                            <a href="" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
                             <div class="card">
-                                <span class="product-type">NEW</span>
+                                <span class="product-type">new</span>
                                 <div class="image-holder">
                                     <a href="{% url 'detail-view' slug=product.slug %}"><img src="{% get_media_prefix %}{{product.image}}" class="card-img-top" alt="Lastest Arrivals 1"></a>
                                 </div>

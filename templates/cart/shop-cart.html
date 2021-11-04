@@ -61,13 +61,13 @@
                                                 <div class="row no-gutters">
 
                                                     <div class="col-12 col-lg-2 product-detail-cart-image">
-                                                    <a class="shopping-product" href="#"><img src="{% get_media_prefix %}{{cartitem.product.image}}" alt="Generic placeholder image"></a>
+                                                    <a class="shopping-product" href="{% url 'detail-view' slug=cartitem.product.slug %}"><img src="{% get_media_prefix %}{{cartitem.product.image}}" alt="Generic placeholder image"></a>
                                                     </div>
                                                     
                                                     <div class="col-12 col-lg-10 mt-auto product-detail-cart-data">
                                                         <div class="media-body ml-lg-3">
-                                                            <h4 class="product-name"><a href="{% url 'detail-view' slug=cartitem.product.slug %}">{{cartitem.product.name}}</a></h4>
-                                                            <p class="product-des">color</p>
+                                                            <h4><p class="product-des">{{cartitem.color}}</p></h4>
+                                                            <p class="product-des">{{cartitem.color}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -109,7 +109,8 @@
                         <div class="row">
                             <div class="col-12 text-left">
                                 <a href="shop-cart.html" class="btn  pink-gradient-btn-into-black">Continue shopping</a>
-                                <a href="shop-cart.html" class="btn pink-color-black-gradient-btn ">Make Purchase</a>
+                                <a href="{% url 'standalone' %}" class="btn pink-color-black-gradient-btn ">About items</a>
+                                <a href="shop-cart.html" class="btn  pink-gradient-btn-into-black">Make Purchase</a>
                             </div>
 <!--                            <div class="col-6  coupon text-left">-->
 <!--                                <a href="shop-cart.html" class="btn pink-color-black-gradient-btn ">CHECKOUT</a>-->
@@ -206,138 +207,7 @@
 
 {% include "index/footer.html" %}
 
-<!--START SEARCH AREA-->
-<div class="search-box-overlay">
-    <a><i class="fas fa-times cross-sign" id="close-window"></i></a>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12 search-col">
-                <form action="#">
-                    <div class="input-group search-box-form">
-                        <input type="text" class="form-control" placeholder="Search Here" aria-label="Search Here">
-                        <div class="input-group-prepend">
-                            <button class="input-group-text" type="submit" id="basic-addon1"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="search-listing row">
-                <div class="col-12 mb-4">
-                    <h4 class="">Filtered Items</h4>
-                </div>
-                <div class="col-12 listing-search-scroll">
-                    <div class="media row">
-                        <div class="img-holder ml-1 mr-2 col-4">
-                            <a  href="#"><img src="img/product-listing/p54.jpg" class="align-self-center" alt="cartitem"></a>
-                        </div>
-                        <div class="media-body mt-auto mb-auto col-8">
-                            <h5 class="name"><a href="#">Light wear</a></h5>
-                            <p class="category">light wear Lastest</p>
-                            <a class="btn black-sm-btn" href="shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                            <a class="btn black-sm-btn"><i class="fas fa-eye"></i></a>
-                        </div>
-                    </div>
-                    <div class="media row">
-                        <div class="img-holder ml-1 mr-2 col-4">
-                            <a  href="#"><img src="img/product-listing/p58.jpg" class="align-self-center" alt="cartitem"></a>
-                        </div>
-                        <div class="media-body mt-auto mb-auto col-8">
-                            <h5 class="name"><a  href="#">light wear</a></h5>
-                            <p class="category">light wear Lastest</p>
-                            <a class="btn black-sm-btn" href="shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                            <a class="btn black-sm-btn"><i class="fas fa-eye"></i></a>
-                        </div>
-                    </div>
-                    <div class="media row">
-                        <div class="img-holder ml-1 mr-2 col-4">
-                            <a  href="#"><img src="img/product-listing/p6.jpg" class="align-self-center" alt="cartitem"></a>
-                        </div>
-                        <div class="media-body mt-auto mb-auto col-8">
-                            <h5 class="name"><a href="#"> light wear</a></h5>
-                            <p class="category">light wear Lastest</p>
-                            <a class="btn black-sm-btn" href="shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                            <a class="btn black-sm-btn"><i class="fas fa-eye"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <hr>
-            </div>
-
-            <div class="col-12">
-                <h4 class="outlet-title text-center"> - Outlets - </h4>
-            </div>
-
-            <div class="col-12">
-                <div class="search-box-meida-items owl-carousel owl-theme">
-
-                    <div class="item">
-                        <div class="brand-search-box ml-auto mr-auto">
-                            <div class="media">
-                                <div class="brand-box-holder">
-                                    <a href="#"> <img class="mr-3" src="img/product-listing/p38.jpg" alt="Generic placeholder image"></a>
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="mt-0"><a href="#"> Modest Fashion</a></h5>
-                                    <p> Cras sit amet nibh libero.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="item">
-                        <div class="brand-search-box ml-auto mr-auto">
-                            <div class="media">
-                                <div class="brand-box-holder">
-                                    <img class="mr-3" src="img/product-listing/p38.jpg" alt="Generic placeholder image">
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="mt-0"><a href="product-listing.html"> Modest Fashion</a></h5>
-                                    <p> Cras sit amet nibh libero.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="item">
-                        <div class="brand-search-box ml-auto mr-auto">
-                            <div class="media">
-                                <div class="brand-box-holder">
-                                    <img class="mr-3" src="img/product-listing/p38.jpg" alt="Generic placeholder image">
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="mt-0"><a href="product-listing.html"> Modest Fashion</a></h5>
-                                    <p> Cras sit amet nibh libero.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="item">
-                        <div class="brand-search-box ml-auto mr-auto">
-                            <div class="media">
-                                <div class="brand-box-holder">
-                                    <img class="mr-3" src="img/product-listing/p38.jpg" alt="Generic placeholder image">
-                                </div>
-                                <div class="media-body">
-                                    <h5 class="mt-0"><a href="product-listing.html"> Modest Fashion</a></h5>
-                                    <p> Cras sit amet nibh libero.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-<!--END SEARCH AREA -->
+{% include "index/header-top.html" %}
 
 {% include "index/javaScript.html" %}
 </body>
