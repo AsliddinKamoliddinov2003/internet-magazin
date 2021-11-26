@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Q
 
 from .models import *
-from .utils import filter_min_max
+from .utils import filter_min_max, condition_filter
 
 
 
@@ -35,13 +35,7 @@ def detailView(request, slug):
 
 
 def store(request):
-    holat = request.GET.get('holat',None)
-    if holat:
-        products = Product.objects.filter(condition=holat)
-        products = filter_min_max(request, products)
-    else:
-        products = Product.objects.all()
-        products = filter_min_max(request, products) 
+    products = condition_filter(request)
     
     if search(request, products):
         products=search(request,products)
