@@ -35,11 +35,17 @@ def detailView(request, slug):
 
 
 def store(request):
-    products = Product.objects.all()
-    products = filter_min_max(request, products)
+    holat = request.GET.get('holat',None)
+    if holat:
+        products = Product.objects.filter(condition=holat)
+        products = filter_min_max(request, products)
+    else:
+        products = Product.objects.all()
+        products = filter_min_max(request, products) 
     
     if search(request, products):
         products=search(request,products)
+
     context = {
         "products":products,
         "word":products

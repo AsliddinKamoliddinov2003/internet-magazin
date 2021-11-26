@@ -13,7 +13,7 @@ def add_cart_item(request, product_id):
     
     cart = get_cart(request)
     try:
-        cartitem = CartItem.objects.get(cart=cart, product=product)
+        cartitem = CartItem.objects.get(cart=cart, product=product )
         cartitem.quantity += 1
     except CartItem.DoesNotExist:
         cartitem = CartItem(product=product, cart=cart)

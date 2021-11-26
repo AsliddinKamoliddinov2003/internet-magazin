@@ -36,10 +36,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_display_links=["name"]
     search_fields=["name","description"]
     prepopulated_fields={"slug":("name",)}
-
     
     inlines = [ProductImageAdmin, ProductColorStackedAdmin, ProductSizeStackedAdmin]
-
 
 
 
